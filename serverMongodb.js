@@ -140,7 +140,8 @@ app.get("/download/:name", async (req, res) => {
     return res.status(404).json({ error: "File not found" });
   }
 
-  res.set("Content-Type", file.contentType);
+  res.attachment(file.filename);
+  res.type(file.contentType);
   res.send(file.data);
 });
 
